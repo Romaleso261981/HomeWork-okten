@@ -1,0 +1,35 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.border {
+  border: 1px solid #000;
+}
+
+.box ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.list-1 > ul > li:nth-child(even) {
+  color: rgb(190, 97, 188);
+}
+.list-2 > ul > li:nth-child(odd) {
+  font-size: 22px;
+}
+.list-3 > ul > li:nth-child(2n + 4)::after {
+  content: "!";
+}
+.list-4 > ul > li:last-child {
+  color: rgb(90, 13, 90);
+}
+.list-5 > ul > li:first-letter {
+  font-size: 30px;
+  color: red;
+}
