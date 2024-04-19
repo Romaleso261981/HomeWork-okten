@@ -10,40 +10,6 @@
 .a4 {
   grid-area: a4;
 }
-
-.header {
-  display: flex;
-  justify-content: flex-start;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 10px;
-  height: 5vh;
-}
-.banner {
-  height: 35vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.article-Wrapper {
-  display: grid;
-  height: 45vh;
-  grid-template-areas:
-    "a1 a2"
-    "a3 a4";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 10px;
-  margin-bottom: 10px;
-}
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5vh;
-}
-
 .a1,
 .a2,
 .a3,
@@ -60,31 +26,67 @@
   padding: 10px;
   border-radius: 5px;
 }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+.header {
+  width: 100%;
+  overflow: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+.hed1,
+.hed2,
+.hed3,
+.hed4 {
+  width: 100%;
+}
+.banner {
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.article-Wrapper {
+  grid-template-areas:
+    "a1"
+    "a2"
+    "a3"
+    "a4";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+}
 
-@media screen and (max-width: 440px) {
-  .article-Wrapper {
-    grid-template-areas:
-      "a1"
-      "a2"
-      "a3"
-      "a4";
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-  }
+.hed1,
+.hed2,
+.hed3,
+.hed4 {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
   .header {
-    width: auto;
-    overflow: auto;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     gap: 20px;
-    align-items: center;
+    margin-bottom: 10px;
   }
-  .hed1,
-  .hed2,
-  .hed3,
-  .hed4 {
-    width: 100%;
+}
+@media screen and (min-width: 440px) {
+  .header {
+    width: 50%;
+    gap: 20px;
+    flex-direction: row;
   }
 }
