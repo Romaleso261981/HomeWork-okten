@@ -249,8 +249,8 @@ let coursesAndDurationArray = [
     {title: 'Frontend', monthDuration: 4}
 ];
 
-coursesAndDurationArray.forEach((cours) => {
-    if (cours.monthDuration > 5) {
+coursesAndDurationArray.forEach((course) => {
+    if (course.monthDuration > 5) {
         console.log("Супер");
     }
 })
