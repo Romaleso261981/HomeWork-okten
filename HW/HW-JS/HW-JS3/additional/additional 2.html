@@ -5,6 +5,21 @@
 	<title>Title</title>
 
 	<style>
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .users-list {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
         .users-box {
             display: flex;
             flex-wrap: wrap;
@@ -36,7 +51,7 @@
 	*
 	* */
 
-    let usersList = [
+    let users = [
         {
             id: 1,
             name: 'Leanne Graham',
@@ -270,10 +285,12 @@
     ];
 
     const usersListWrapper = document.querySelector('.users-box');
+    const usersList = document.createElement('ul')
+    usersList.classList.add('users-list');
 
-    usersList.map((user) => {
+    users.map((user) => {
         console.log(user);
-        const userBlock = document.createElement('div');
+        const userBlock = document.createElement('li');
         userBlock.classList.add('user-block');
 
         const userTitle = document.createElement('h2');
@@ -293,7 +310,8 @@
         userBlock.appendChild(userCompany);
 
 
-        usersListWrapper.appendChild(userBlock);
+        usersList.appendChild(userBlock);
+        usersListWrapper.appendChild(usersList);
     });
 </script>
 
