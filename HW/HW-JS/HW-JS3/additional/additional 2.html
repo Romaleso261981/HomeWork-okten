@@ -3,34 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+
+	<style>
+        .users-box {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
+        .user-block {
+            width: 45%;
+            padding: 20px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px 0 #ccc;
+
+        }
+
+	</style>
 </head>
 <body>
 
 <!--template 1.1-->
-<div class="users-box">
-	<div class="user-block">
-		<h2>ID - NAME - USERNAME </h2>
-		<h3>EMAIL - PHONE</h3>
-		<div class="address-block">
-			<p>City - ADDRESS.CITY</p>
-			<p>Street - ADDRESS.STREET</p>
-			<p>Suite - ADDRESS.SUITE</p>
-			<p>Zip code - ADDRESS.ZIPCODE</p>
-		</div>
-
-	</div>
-
-	<!--
-
-	...
-	...
-	...
-	other users
-
-	-->
-
-
-</div>
+<div class="users-box"></div>
 
 
 <script>
@@ -272,7 +269,32 @@
         }
     ];
 
+    const usersListWrapper = document.querySelector('.users-box');
 
+    usersList.map((user) => {
+        console.log(user);
+        const userBlock = document.createElement('div');
+        userBlock.classList.add('user-block');
+
+        const userTitle = document.createElement('h2');
+        userTitle.textContent = user.name + ' - ' + user.username + ' - ' + user.id;
+        userBlock.appendChild(userTitle);
+
+        const userEmail = document.createElement('h3');
+        userEmail.textContent = user.email + ' - ' + user.phone;
+        userBlock.appendChild(userEmail);
+
+        const userAddress = document.createElement('p');
+        userAddress.textContent = user.address.city + ' - ' + user.address.street + ' - ' + user.address.suite + ' - ' + user.address.zipcode;
+        userBlock.appendChild(userAddress);
+
+        const userCompany = document.createElement('p');
+        userCompany.textContent = user.company.name + ' - ' + user.company.catchPhrase + ' - ' + user.company.bs;
+        userBlock.appendChild(userCompany);
+
+
+        usersListWrapper.appendChild(userBlock);
+    });
 </script>
 
 </body>
