@@ -5,6 +5,13 @@
 	<title>Title</title>
 
 	<style>
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
         .post-card {
             margin: 10px auto;
             width: 80%;
@@ -627,9 +634,10 @@
     ];
 
     const posstsWrapper = document.querySelector('.wrapper');
+    const postsList = document.createElement('ul');
 
     posts.map((post) => {
-        const userComments = document.createElement('div');
+        const userComments = document.createElement('li');
         userComments.classList.add('post-card');
 
         const postTitle = document.createElement('h2');
@@ -640,7 +648,8 @@
         postBody.textContent = post.body;
         userComments.appendChild(postBody);
 
-        posstsWrapper.appendChild(userComments);
+        postsList.appendChild(userComments);
+        posstsWrapper.appendChild(postsList);
     });
 
 </script>
