@@ -75,11 +75,19 @@ console.log("id. по зростанню", users.sort((a, b) => a.id - b.id));
 */
 
 class Client {
-    constructor(id, name, surname, email, phone) {
+    constructor(id, name, surname, email, phone, order) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.phone = phone;
+        this.order = order;
     }
 }
+
+/*- Створити функцію конструктор яка дозволяє створювати об'єкти car, з властивостями модель, виробник, рік випуску, максимальна швидкість, об'єм двигуна. додати в об'єкт функції:
+    -- drive () - яка виводить в консоль `їдемо зі швидкістю ${максимальна швидкість} на годину`
+    -- info () - яка виводить всю інформацію про автомобіль в форматі `назва поля - значення поля`
+    -- increaseMaxSpeed (newSpeed) - яка підвищує значення максимальної швидкості на значення newSpeed
+    -- changeYear (newValue) - змінює рік випуску на значення newValue
+    -- addDriver (driver) - приймає об'єкт який "водій" з довільним набором полів, і додає його в поточний об'єкт car*/
