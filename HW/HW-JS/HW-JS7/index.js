@@ -91,3 +91,28 @@ class Client {
     -- increaseMaxSpeed (newSpeed) - яка підвищує значення максимальної швидкості на значення newSpeed
     -- changeYear (newValue) - змінює рік випуску на значення newValue
     -- addDriver (driver) - приймає об'єкт який "водій" з довільним набором полів, і додає його в поточний об'єкт car*/
+
+let map = new Map();
+console.log(map);
+let liker = {id: 'liker'};
+let petya = {id: 'petya'};
+map.set(liker, 'liker');
+map.set(petya, 'petya');
+console.log(map);
+
+let car = {
+    model: 'model',
+    producer: 'producer',
+    year: 2020,
+    maxSpeed: 200,
+    engineVolume: 2,
+    drive: function () {
+        console.log(`їдемо зі швидкістю ${this.maxSpeed} на годину`);
+    },
+    info: function () {
+        for (let key in this) {
+            console.log
+            (`${key} - ${this[key]}`);
+        }
+    }
+}

@@ -295,6 +295,7 @@ console.log("об'єкти, в який в modules є sass", coursesArray.filter
 
 /*
 --написати пошук всіх об'єктів, в який в modules є docker
- */
+*/
 
 console.log("об'єкти, в який в modules є docker", coursesArray.filter(course => course.modules.includes('docker')))
+

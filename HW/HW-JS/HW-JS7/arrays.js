@@ -98,7 +98,8 @@ let courses = [
         title: 'Java Complex',
         monthDuration: 6,
         hourDuration: 909,
-        modules: ['html',
+        modules: [
+            'html',
             'css',
             'js',
             'mysql',
@@ -109,7 +110,8 @@ let courses = [
             'docker',
             'git',
             'java core',
-            'java advanced'],
+            'java advanced'
+        ],
         logo: '',
         price: 0,
         rating: 4.998,
@@ -411,7 +413,6 @@ let usersList = [
         }
     }
 ];
-
 let simpsons = [
     {
         name: 'Bart',
@@ -449,7 +450,6 @@ let simpsons = [
         photo: 'https://upload.wikimedia.org/wikipedia/ru/9/9d/Maggie_Simpson.png'
     },
 ];
-
 let user = {
     id: 1,
     name: 'vasya',
@@ -460,7 +460,6 @@ let user = {
     skills: [{title: 'java', exp: 10}, {title: 'js', exp: 10}, {title: 'c++', exp: 10}],
     car: {model: 'toyota', year: 2021, power: 250}
 }
-
 let users = [
     {name: 'vasya', age: 31, status: false},
     {name: 'petya', age: 30, status: true},
@@ -474,7 +473,6 @@ let users = [
     {name: 'olya', age: 31, status: false},
     {name: 'max', age: 31, status: true}
 ];
-
 let locations = [
     {
         "title": "м. Київ",
@@ -1165,7 +1163,6 @@ let locations = [
         "type": "city"
     }
 ];
-
 fetch("https://alerts.in.ua/assets/map.svg", {
     "referrerPolicy": "strict-origin-when-cross-origin",
     "body": null,
@@ -1173,7 +1170,6 @@ fetch("https://alerts.in.ua/assets/map.svg", {
     "mode": "cors",
     "credentials": "include"
 });
-
 fetch("https://alerts.in.ua/assets/locations.json", {
     "referrerPolicy": "strict-origin-when-cross-origin",
     "body": null,
