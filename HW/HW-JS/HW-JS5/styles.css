@@ -1,0 +1,62 @@
+/*Обнулення стилів*/
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    line-height: 1rem;
+    min-width: 20rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-style: inherit;
+}
+
+button {
+    line-height: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+}
+
+body {
+    margin-left: 100px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
+}
