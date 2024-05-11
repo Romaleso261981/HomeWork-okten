@@ -398,7 +398,3 @@ for (let i = 0; i < 6; i++) {
     document.body.appendChild(ul4);
 }
 
-console.log("player1", player1);
-console.log("player2", player2);
-console.log("player3", player3);
-console.log("player4", player4);
