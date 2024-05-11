@@ -150,3 +150,22 @@ const w = (sumUAH, currencyValues, exchangeCurrency) => {
 }
 
 console.log(w(10000, [{currency: 'USD', value: 40}, {currency: 'EUR', value: 42}], 'USD'));
+
+
+const arrNumber = [1, 2, 3, 4, [1, 25, 8, 7, 456], 5, 6, 7, 8, 9, [34, 56, 23, 8, 0, 9], 10];
+
+let newArr = [];
+
+const flat = arr => {
+    // debugger;
+    for (const item of arr) {
+        if (Array.isArray(item)) {
+            flat(item);
+        } else {
+            newArr.push(item);
+        }
+    }
+    return newArr;
+}
+
+console.log(flat(arrNumber));
