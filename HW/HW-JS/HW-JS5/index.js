@@ -152,6 +152,9 @@ const w = (sumUAH, currencyValues, exchangeCurrency) => {
 console.log(w(10000, [{currency: 'USD', value: 40}, {currency: 'EUR', value: 42}], 'USD'));
 
 
+/*Це я просто підглянув у вас на сайті, і вирішив зробити так само, але зі своїми додатковими умовами
+ Я просто пробував рекурсію і методи масивів, і вирішив зробити такий варіант, якщо ви не проти, якщо так, то видаліть цей коментар
+*/
 const arrNumber = [1, 2, 3, 4, [1, 25, 8, 7, 456], 5, 6, 7, 8, 9, [34, 56, 23, 8, 0, 9], 10];
 
 let newArr = [];
@@ -169,3 +172,24 @@ const flat = arr => {
 }
 
 console.log(flat(arrNumber));
+const fullName = 'Лесьо Роман Володимирович'
+
+const arrString = fullName.split(' ').map((name) => name[0].toUpperCase()).join('');
+const avatarWrapper = document.createElement('div');
+avatarWrapper.classList.add('avatar-wrapper');
+
+const text = document.createElement('p');
+const avatar = document.createElement('img');
+
+avatar.src = 'https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg';
+avatar.alt = 'Google';
+avatar.classList.add('avatar');
+
+
+text.style.color = navigator.onLine ? 'green' : 'red';
+
+text.innerText = arrString;
+avatarWrapper.appendChild(avatar);
+avatarWrapper.appendChild(text);
+document.body.appendChild(avatarWrapper);
+
