@@ -171,11 +171,21 @@ console.log(coursesAndDurationArray.map((item) => {
 
 /* описати колоду карт (від 6 до туза без джокерів)*/
 let cards = [];
-let suits = ['spade', 'diamond', 'heart', 'clubs'];
+let cardSuit = ['spade', 'diamond', 'heart', 'clubs'];
 let values = ['6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace'];
 
-cards = [].concat(...suits.map(suit => values.map(value => ({cardSuit: suit, value: value}))))
-console.log(cards)
+cards = cardSuit.reduce((acc, cardSuit) => {
+    values.forEach(value => {
+        acc.push({
+            cardSuit,
+            value,
+        })
+    })
+    return acc
+
+}, [])
+
+console.log("Колода карт", cards)
 
 /*- знайти піковий туз*/
 console.log("піковий туз", cards.find(card => card.cardSuit === 'spade' && card.value === 'ace'))
@@ -298,10 +308,27 @@ console.log("об'єкти, в який в modules є sass", coursesArray.filter
 
 console.log("об'єкти, в який в modules є docker", coursesArray.filter(course => course.modules.includes('docker')))
 
+
 /*Це кінець домашньої роботи я просто хочу попрактикувати yield*/
 
+let img = ['https://t4.ftcdn.net/jpg/03/30/15/99/360_F_330159902_hUzQk7cFjhqedVQpdzAGuWFaRzKpW0W4.jpg', 'https://w7.pngwing.com/pngs/206/448/png-transparent-area-triangle-pattern-card-diamond-s-angle-triangle-symmetry.png', 'https://i.pinimg.com/474x/3e/fa/cb/3efacb12feada391eee1d0d3c646a062.jpg', 'https://www.shutterstock.com/image-vector/clubs-icon-illustration-isolated-vector-260nw-1908252865.jpg'];
+let values2 = ['6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace'];
+
+const cards2 = img.reduce((acc, img) => {
+    values2.forEach(value => {
+        acc.push({
+            img,
+            value,
+        })
+    })
+    return acc
+
+}, [])
+
+console.log("Колода карт2", cards2)
+
 function* cardsHolder() {
-    for (const card of cards) {
+    for (const card of cards2) {
         yield card;
     }
 }
@@ -311,13 +338,64 @@ const player1 = []
 const player2 = []
 const player3 = []
 const player4 = []
+const ul = document.createElement("ul");
+ul.classList.add("player1");
+const ul2 = document.createElement("ul");
+ul2.classList.add("player2");
+const ul3 = document.createElement("ul");
+ul3.classList.add("player3");
+const ul4 = document.createElement("ul");
+ul4.classList.add("player4");
 
 for (let i = 0; i < 6; i++) {
+    const li = document.createElement("li");
+    li.classList.add("cardBlock");
+    const p = document.createElement("p");
+    const img = document.createElement("img");
+    img.classList.add("img");
     player1.push(cardsHolderGenerator.next());
+    p.innerText = player1[i].value.value;
+    img.src = player1[i].value.img;
+    li.appendChild(p);
+    li.appendChild(img);
+    ul.appendChild(li);
+    const li2 = document.createElement("li");
+    li2.classList.add("cardBlock");
+    const p2 = document.createElement("p");
+    const img2 = document.createElement("img");
+    img2.classList.add("img");
     player2.push(cardsHolderGenerator.next());
+    p2.innerText = player2[i].value.value;
+    img2.src = player2[i].value.img;
+    li2.appendChild(p2);
+    li2.appendChild(img2);
+    ul2.appendChild(li2);
+    const li3 = document.createElement("li");
+    li3.classList.add("cardBlock");
+    const p3 = document.createElement("p");
+    const img3 = document.createElement("img");
+    img3.classList.add("img");
     player3.push(cardsHolderGenerator.next());
+    p3.innerText = player3[i].value.value;
+    img3.src = player3[i].value.img;
+    li3.appendChild(p3);
+    li3.appendChild(img3);
+    ul3.appendChild(li3);
+    const li4 = document.createElement("li");
+    li4.classList.add("cardBlock");
+    const p4 = document.createElement("p");
+    const img4 = document.createElement("img");
+    img4.classList.add("img");
     player4.push(cardsHolderGenerator.next());
-
+    p4.innerText = player4[i].value.value;
+    img4.src = player4[i].value.img;
+    li4.appendChild(p4);
+    li4.appendChild(img4);
+    ul4.appendChild(li4);
+    document.body.appendChild(ul);
+    document.body.appendChild(ul2);
+    document.body.appendChild(ul3);
+    document.body.appendChild(ul4);
 }
 
 console.log("player1", player1);
