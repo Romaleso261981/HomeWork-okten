@@ -192,7 +192,6 @@ console.log("всі буби", cards.filter(card => card.cardSuit === 'diamond')
 /*- всі трефи від 9 та більше*/
 console.log("всі трефи від 9 та більше", cards.filter(card => card.cardSuit === 'clubs' && values.indexOf(card.value) >= 3))
 
-/*==================================================================================*/
 
 /*
 Взяти описану колоду карт, та за допомоги reduce упакувати всі карти по "мастях" в об'єкт
@@ -299,3 +298,29 @@ console.log("об'єкти, в який в modules є sass", coursesArray.filter
 
 console.log("об'єкти, в який в modules є docker", coursesArray.filter(course => course.modules.includes('docker')))
 
+/*Це кінець домашньої роботи я просто хочу попрактикувати yield*/
+
+function* cardsHolder() {
+    for (const card of cards) {
+        yield card;
+    }
+}
+
+const cardsHolderGenerator = cardsHolder();
+const player1 = []
+const player2 = []
+const player3 = []
+const player4 = []
+
+for (let i = 0; i < 6; i++) {
+    player1.push(cardsHolderGenerator.next());
+    player2.push(cardsHolderGenerator.next());
+    player3.push(cardsHolderGenerator.next());
+    player4.push(cardsHolderGenerator.next());
+
+}
+
+console.log("player1", player1);
+console.log("player2", player2);
+console.log("player3", player3);
+console.log("player4", player4);
