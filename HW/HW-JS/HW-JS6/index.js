@@ -132,7 +132,7 @@ function sortNums(arr, direction) {
   //   case "desc":
   //     return arr.sort((a, b) => b - a);
   //   default:
-  //     return arr.sort((a, b) => (direction === "ascending" ? a - b : b - a));
+  //     return arr.sort((a, b) => (direction === "asc" ? a - b : b - a));
   // }
 
   // if (direction === "asc") {
