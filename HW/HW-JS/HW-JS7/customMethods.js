@@ -119,7 +119,7 @@ const f = () => {
 
   const newArr2 = arrNumber.mySort((a, b) => a > b);
   console.log(
-    "початковий масив після ого як відпрацювала функція сортировки",
+    "початковий масив після того як відпрацювала функція сортування",
     arrNumber
   );
   console.log("відсортирований массив", newArr2);
@@ -148,7 +148,7 @@ const j = () => {
 
   const newArr2 = arrNumber.mySort2((a, b) => a > b);
   console.log(
-    "початковий масив після ого як відпрацювала функція сортировки",
+    "початковий масив після того як відпрацювала функція сортування",
     arrNumber
   );
   console.log("відсортирований массив", newArr2);
@@ -160,18 +160,22 @@ j();
 
 Array.prototype.myMap = function myMap(callback) {
   const result = [];
-
   for (let i = 0; i < this.length; i++) {
     result.push(callback(this[i]));
   }
-
   return result;
 };
+document.write(`<div class="container shadow">`),
+  document.write(`<ul class="container shadow">`),
+  users2.myMap((user) => {
+    console.log(user);
+    return (
+      document.write(`<li class="card">`),
+      document.write(
+        `name: ${user.name} surname: ${user.surname} email: ${user.email} phone: ${user.phone}`
+      ),
+      document.write("</li>")
+    );
+  });
 
-users2.myMap((user) => {
-  return (
-    document.write(`<div class="container shadow">`),
-    document.write(`${user.name} ${user.surname} ${user.email} ${user.phone}`),
-    document.write("</div>")
-  );
-});
+document.write("</ul>"), document.write("</div>");
