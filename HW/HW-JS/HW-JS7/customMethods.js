@@ -73,7 +73,7 @@ const users2 = [
   },
   {
     id: 10,
-    name: "name10",
+    name: "vasya",
     surname: "surname10",
     email: "email10",
     isAdmin: true,
@@ -92,6 +92,37 @@ Array.prototype.myFilter = function myFilter(callback) {
 
   return result;
 };
+
+Array.prototype.myFind = function myFind(callback) {
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i])) {
+      return this[i];
+    }
+  }
+};
+
+Array.prototype.myFindAll = function myFind(callback) {
+  const result = [];
+
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i])) {
+      result.push(this[i]);
+    }
+  }
+
+  return result;
+};
+
+console.log(users2.myFind((user) => user.name === "Vasya"));
+console.log(
+  users2.myFindAll((user) => user.name === "Vasya" || user.name === "vasya")
+);
+
+console.log(
+  users2.myFindAll(
+    (user) => user.name.includes("sya") || user.name.includes("Vas")
+  )
+);
 
 // console.log(users2.myFilter((user) => user.isAdmin));
 
@@ -154,7 +185,7 @@ const j = () => {
   console.log("відсортирований массив", newArr2);
 };
 
-j();
+// j();
 
 // кастомна функція map
 
