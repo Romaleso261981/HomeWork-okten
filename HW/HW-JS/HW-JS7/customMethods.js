@@ -113,16 +113,9 @@ Array.prototype.myFindAll = function myFind(callback) {
   return result;
 };
 
-console.log(users2.myFind((user) => user.name === "Vasya"));
-console.log(
-  users2.myFindAll((user) => user.name === "Vasya" || user.name === "vasya")
-);
+console.log(users2.myFind((user) => user.name.includes("n")));
 
-console.log(
-  users2.myFindAll(
-    (user) => user.name.includes("sya") || user.name.includes("Vas")
-  )
-);
+console.log(users2.myFindAll((user) => user.name.includes("n")));
 
 // console.log(users2.myFilter((user) => user.isAdmin));
 
