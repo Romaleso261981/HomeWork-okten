@@ -165,17 +165,29 @@ Array.prototype.myMap = function myMap(callback) {
   }
   return result;
 };
-document.write(`<div class="container shadow">`),
-  document.write(`<ul class="container shadow">`),
-  users2.myMap((user) => {
-    console.log(user);
-    return (
-      document.write(`<li class="card">`),
-      document.write(
-        `name: ${user.name} surname: ${user.surname} email: ${user.email} phone: ${user.phone}`
-      ),
-      document.write("</li>")
-    );
-  });
 
-document.write("</ul>"), document.write("</div>");
+const wrapper = document.createElement("div");
+const list = document.createElement("ul");
+list.className = "container";
+list.classList.add("shadow");
+
+document.body.appendChild(wrapper);
+wrapper.appendChild(list);
+
+users2.myMap((user) => {
+  const li = document.createElement("li");
+  li.className = "card";
+  li.textContent = `name: ${user.name} surname: ${user.surname} email: ${user.email} phone: ${user.phone}`;
+  list.appendChild(li);
+});
+
+// users2.myMap((user) => {
+//   console.log(user);
+//   return (
+//     document.write(`<li class="card">`),
+//     document.write(
+//       `name: ${user.name} surname: ${user.surname} email: ${user.email} phone: ${user.phone}`
+//     ),
+//     document.write("</li>")
+//   );
+// });
