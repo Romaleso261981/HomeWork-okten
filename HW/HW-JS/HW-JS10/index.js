@@ -87,8 +87,8 @@ button3.onclick = () => {
 При натисканні prev виводяться попередні 10 об'єктів
 */
 
-let count = 5;
-const step = 5;
+let count = 10;
+const step = 10;
 const users = Array(100)
   .fill("")
   .map((_, i) => ({ id: i + 1, name: `user ${i + 1}` }));
