@@ -238,35 +238,37 @@ button.onclick = () => {
 
 const div = document.getElementById("div");
 const price = document.getElementById("price");
-let count = 0;
 const interval = 10000;
+
 const currentlocalData = JSON.parse(localStorage.getItem("amountData"));
 if (!currentlocalData) {
   localStorage.setItem(
     "amountData",
     JSON.stringify({ amount: 100, lastVisit: Date.now() })
   );
-  count = 100;
+  price.textContent = 100;
+} else {
+  if (currentlocalData.amount) {
+    price.textContent = currentlocalData.amount;
+  }
 }
-
-price.textContent = count;
 
 window.onload = () => {
   const data = JSON.parse(localStorage.getItem("amountData"));
-
   console.log("data", data);
-  console.log(data.lastVisit < Date.now() - interval);
+
   if (data.lastVisit) {
-    if (data.lastVisit > Date.now() - interval) {
-      return;
+    if (data.lastVisit < Date.now() - interval) {
+      price.textContent = data.amount + 10;
+      localStorage.setItem(
+        "amountData",
+        JSON.stringify({ amount: data.amount + 10, lastVisit: Date.now() })
+      );
+      alert("added 10");
+    } else {
+      alert(
+        "You can't add 10, because you reloaded the page earlier than 10 seconds ago"
+      );
     }
   }
-  alert("added 10");
-  localStorage.setItem(
-    "amountData",
-    JSON.stringify({ amount: 100 + 10, lastVisit: Date.now() })
-  );
-  // count = data?.amount + 10;
-
-  price.textContent = data.amount;
 };
