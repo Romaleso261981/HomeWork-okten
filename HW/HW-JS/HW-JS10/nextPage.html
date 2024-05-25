@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="root"></div>
+    <script>
+      const data = localStorage.getItem("sessions");
+      const sessions = JSON.parse(data);
+      const root = document.querySelector(".root");
+      const button = document.createElement("button");
+      button.textContent = "Go back";
+      button.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+      root.appendChild(button);
+      const ul = document.createElement("ul");
+      sessions.forEach((session) => {
+        const li = document.createElement("li");
+        li.textContent = session;
+        ul.appendChild(li);
+      });
+      root.appendChild(ul);
+    </script>
+  </body>
+</html>
