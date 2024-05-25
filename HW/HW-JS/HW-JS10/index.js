@@ -200,34 +200,34 @@
 (Додатковачастина для завдання)
 */
 
-// const rows = document.getElementById("rows");
-// rows.style.marginLeft = "20px";
-// const cols = document.getElementById("cols");
-// cols.style.marginLeft = "20px";
-// const content = document.getElementById("content");
-// const button = document.getElementById("button");
+const rows = document.getElementById("rows");
+rows.style.marginLeft = "20px";
+const cols = document.getElementById("cols");
+cols.style.marginLeft = "20px";
+const content = document.getElementById("content");
+const button = document.getElementById("button");
 
-// const table = document.getElementById("table");
+const table = document.getElementById("table");
 
-// button.onclick = () => {
-//   const rowsValue = rows.value;
-//   const colsValue = cols.value;
-//   const contentValue = content.value;
+button.onclick = () => {
+  const rowsValue = rows.value;
+  const colsValue = cols.value;
+  const contentValue = content.value;
 
-//   const table = document.createElement("table");
+  const table = document.createElement("table");
 
-//   for (let i = 0; i < rowsValue; i++) {
-//     const tr = document.createElement("tr");
-//     for (let j = 0; j < colsValue; j++) {
-//       const td = document.createElement("td");
-//       td.textContent = contentValue;
-//       tr.appendChild(td);
-//     }
-//     table.appendChild(tr);
-//   }
+  for (let i = 0; i < rowsValue; i++) {
+    const tr = document.createElement("tr");
+    for (let j = 0; j < colsValue; j++) {
+      const td = document.createElement("td");
+      td.textContent = contentValue;
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
 
-//   document.body.appendChild(table);
-// };
+  document.body.appendChild(table);
+};
 
 /*
 створити сторінку з довільним блоком, в середині якого є значення "100грн"
