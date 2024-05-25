@@ -238,16 +238,35 @@ button.onclick = () => {
 
 const div = document.getElementById("div");
 const price = document.getElementById("price");
-let count = localStorage.getItem("count") || 100;
+let count = 0;
+const interval = 10000;
+const currentlocalData = JSON.parse(localStorage.getItem("amountData"));
+if (!currentlocalData) {
+  localStorage.setItem(
+    "amountData",
+    JSON.stringify({ amount: 100, lastVisit: Date.now() })
+  );
+  count = 100;
+}
+
 price.textContent = count;
 
 window.onload = () => {
-  const lastVisit = localStorage.getItem("lastVisit");
-  if (lastVisit && Date.now() - lastVisit < 10000) {
-    return;
+  const data = JSON.parse(localStorage.getItem("amountData"));
+
+  console.log("data", data);
+  console.log(data.lastVisit < Date.now() - interval);
+  if (data.lastVisit) {
+    if (data.lastVisit > Date.now() - interval) {
+      return;
+    }
   }
-  count += 10;
-  localStorage.setItem("count", count);
-  price.textContent = count;
-  localStorage.setItem("lastVisit", Date.now());
+  alert("added 10");
+  localStorage.setItem(
+    "amountData",
+    JSON.stringify({ amount: 100 + 10, lastVisit: Date.now() })
+  );
+  // count = data?.amount + 10;
+
+  price.textContent = data.amount;
 };
