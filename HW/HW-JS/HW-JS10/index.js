@@ -49,7 +49,22 @@ btn.onclick = () => {
   };
 
   const result = document.getElementById("result");
-  result.innerHTML = `<pre>${JSON.stringify(user, null, 2)}</pre>`;
+  const div = document.createElement("div");
+  div.classList.add("userDiv");
+  const nameSpan = document.createElement("span");
+  nameSpan.style.marginRight = "10px";
+  nameSpan.textContent = `User: ${name}`;
+  div.appendChild(nameSpan);
+  const surnameSpan = document.createElement("span");
+  surnameSpan.style.marginRight = "10px";
+  surnameSpan.textContent = `Surname: ${surname}`;
+  div.appendChild(surnameSpan);
+  const ageSpan = document.createElement("span");
+  ageSpan.style.marginRight = "10px";
+  ageSpan.textContent = `Age: ${age}`;
+  div.appendChild(ageSpan);
+
+  result.appendChild(div);
 };
 
 /*
@@ -139,7 +154,7 @@ const renderUsers = (newUsers = []) => {
 renderUsers(getNewUsers(count));
 
 prev.onclick = () => {
-  if (count === 5) {
+  if (count === 10) {
     alert("No more users");
     prev.style.display = "none";
   }
