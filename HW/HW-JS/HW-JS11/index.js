@@ -3,6 +3,8 @@
 
 - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти. Інгредієнти повинні бути список під час відображення.
 
+-Стоврити форму з трьома полями для name,sruname,age та кнопкою. При натисканні на кнопку зчитати данні з полів, та вивести об'єкт в документ. Іншими словами : заповниои форму, натиснули кнопку, під формою з'явився блок з вашим об'єктом
+
 - зробити файл users.html
 з ендпоінту http://jsonplaceholder.typicode.com/users отримати всіх користувачів
 вивести їх id + name списком та додати посилання з href = user-details.html?id=XXX (замість ХХХ - айді юзера)
@@ -160,7 +162,11 @@ fetch("https://dummyjson.com/recipes")
   });
 
 /*
- Стоврити форму з трьома полями для name,sruname,age та кнопкою. При натисканні на кнопку зчитати данні з полів, та вивести об'єкт в документ. Іншими словами : заповниои форму, натиснули кнопку, під формою з'явився блок з вашим об'єктом
+- зробити файл users.html
+з ендпоінту http://jsonplaceholder.typicode.com/users отримати всіх користувачів
+вивести їх id + name списком та додати посилання з href = user-details.html?id=XXX (замість ХХХ - айді юзера)
+при кліку на посилання перехід на відповідну сторінку, на якій буде вся інформація про користувача (всі 15 полів)
+отримана через додатковий запит (https://jsonplaceholder.typicode.com/users/XXX   де ХХХ - айді користувача)
 */
 
 function handleUserDetail(id) {
@@ -176,7 +182,6 @@ function userRender(user) {
   div.classList.add("userDiv");
   div.addEventListener("click", () => handleUserDetail(user.id));
   const a = document.createElement("a");
-  a.href = `user-details.html?id=${user.id}`;
   a.innerText = `${user.id} ${user.name}`;
 
   const email = document.createElement("p");
@@ -191,9 +196,9 @@ function userRender(user) {
   website.classList.add("website");
   website.innerText = user.website;
 
-  div.appendChild(email);
-  div.appendChild(phone);
-  div.appendChild(website);
+  // div.appendChild(email);
+  // div.appendChild(phone);
+  // div.appendChild(website);
 
   div.appendChild(a);
 

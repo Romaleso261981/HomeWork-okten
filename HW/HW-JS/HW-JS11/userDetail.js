@@ -80,7 +80,7 @@ fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
   .then((value) => value.json())
   .then((currentUser) => {
     if (currentUser) {
-      const userDetails = findElement(".user-details", ["user-details"]);
+      const userDetails = findElement(".user-details");
       const mainTitleWrapper = findElement(".main-title");
 
       const mainTitle = createElement(
@@ -149,7 +149,7 @@ fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
       });
 
       buttonWrapper.appendChild(backButton);
-      buttonWrapper.appendChild(commentsButton);
+      // buttonWrapper.appendChild(commentsButton);
 
       userDetails.appendChild(buttonWrapper);
     } else {
