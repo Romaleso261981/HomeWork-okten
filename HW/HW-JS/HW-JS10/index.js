@@ -34,50 +34,50 @@
  Стоврити форму з трьома полями для name,sruname,age та кнопкою. При натисканні на кнопку зчитати данні з полів, та вивести об'єкт в документ. Іншими словами : заповниои форму, натиснули кнопку, під формою з'явився блок з вашим об'єктом
  */
 
-const form = document.getElementById("userForm1");
-const btn = document.getElementById("btn");
+// const form = document.getElementById("userForm1");
+// const btn = document.getElementById("btn");
 
-btn.onclick = () => {
-  const name = form.name.value;
-  const surname = form.surname.value;
-  const age = form.age.value;
+// btn.onclick = () => {
+//   const name = form.name.value;
+//   const surname = form.surname.value;
+//   const age = form.age.value;
 
-  const user = {
-    name,
-    surname,
-    age
-  };
+//   const user = {
+//     name,
+//     surname,
+//     age
+//   };
 
-  const result = document.getElementById("result");
-  const div = document.createElement("div");
-  div.classList.add("userDiv");
-  const nameSpan = document.createElement("span");
-  nameSpan.style.marginRight = "10px";
-  nameSpan.textContent = `User: ${name}`;
-  div.appendChild(nameSpan);
-  const surnameSpan = document.createElement("span");
-  surnameSpan.style.marginRight = "10px";
-  surnameSpan.textContent = `Surname: ${surname}`;
-  div.appendChild(surnameSpan);
-  const ageSpan = document.createElement("span");
-  ageSpan.style.marginRight = "10px";
-  ageSpan.textContent = `Age: ${age}`;
-  div.appendChild(ageSpan);
+//   const result = document.getElementById("result");
+//   const div = document.createElement("div");
+//   div.classList.add("userDiv");
+//   const nameSpan = document.createElement("span");
+//   nameSpan.style.marginRight = "10px";
+//   nameSpan.textContent = `User: ${name}`;
+//   div.appendChild(nameSpan);
+//   const surnameSpan = document.createElement("span");
+//   surnameSpan.style.marginRight = "10px";
+//   surnameSpan.textContent = `Surname: ${surname}`;
+//   div.appendChild(surnameSpan);
+//   const ageSpan = document.createElement("span");
+//   ageSpan.style.marginRight = "10px";
+//   ageSpan.textContent = `Age: ${age}`;
+//   div.appendChild(ageSpan);
 
-  result.appendChild(div);
-};
+//   result.appendChild(div);
+// };
 
 /*
 є сторінка, на якій є блок, я кому знаходиьтся цифра. написати код, який при кожному перезавантажені сторінки буде додавати до неї +1
 */
 
 const number = document.getElementById("num");
-let c = localStorage.getItem("count") || 1;
+let c = localStorage.getItem("count261981") || 1;
 number.textContent = c;
 
 window.onload = () => {
   c++;
-  localStorage.setItem("count", c);
+  localStorage.setItem("count261981", c);
   number.textContent = c;
 };
 
@@ -85,15 +85,15 @@ window.onload = () => {
 Є сторінка index.html (назва довільна), при відвідуванні якої в локальне сховще, в масив sessions зберігається інформація про дату та час відвідування сторінки. Є ще сторінка sessions.html (назва довільна), при відвідуванні якої потрібно відмалювати всю інформацію про відвідування сторінки index.html. Інфу НЕ виводити в консоль, а побудувати дом структуру під кожну сессію
 */
 
-const button3 = document.getElementById("button3");
+// const button3 = document.getElementById("button3");
 
-button3.onclick = () => {
-  const sessions = JSON.parse(localStorage.getItem("sessions")) || [];
-  sessions.push(new Date());
-  localStorage.setItem("sessions", JSON.stringify(sessions));
+// button3.onclick = () => {
+//   const sessions = JSON.parse(localStorage.getItem("sessions")) || [];
+//   sessions.push(new Date());
+//   localStorage.setItem("sessions", JSON.stringify(sessions));
 
-  window.location.href = "nextPage.html";
-};
+//   window.location.href = "nextPage.html";
+// };
 
 /*
 зробити масив на 100 об'єктів та дві кнопки prev next
@@ -179,35 +179,35 @@ next.onclick = () => {
 - Створити довільний елемент з id = text та створити кнопку.Використовуючи JavaScript, зробіть так, щоб при натисканні на кнопку зникав елемент з id="text".
 */
 
-const div5 = document.getElementsByClassName("root")[0];
-const button5 = document.createElement("button");
+// const div5 = document.getElementsByClassName("root")[0];
+// const button5 = document.createElement("button");
 
-button5.textContent = "Hide";
-div5.appendChild(button5);
+// button5.textContent = "Hide";
+// div5.appendChild(button5);
 
-const p = document.getElementById("text");
+// const p = document.getElementById("text");
 
-button5.onclick = () => {
-  p.style.display = "none";
-};
+// button5.onclick = () => {
+//   p.style.display = "none";
+// };
 
 /*
 - створити інпут який приймає вік людини та кнопку яка підтверджує дію.При натисканні на кнопку зчитати інформацію з інпуту та перевірити вік чи меньше він ніж 18, та повідомити про це користувача
 */
 
-const input = document.getElementById("age");
-const button6 = document.getElementById("button10/6");
+// const input = document.getElementById("age");
+// const button6 = document.getElementById("button10/6");
 
-button6.onclick = () => {
-  const age = input.value;
-  if (age < 18) {
-    alert("You are under 18");
-  } else {
-    alert("You are over 18");
-  }
+// button6.onclick = () => {
+//   const age = input.value;
+//   if (age < 18) {
+//     alert("You are under 18");
+//   } else {
+//     alert("You are over 18");
+//   }
 
-  input.value = "";
-};
+//   input.value = "";
+// };
 
 /*
 *** Створити 3 інпута та кнопку. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк.
@@ -215,34 +215,34 @@ button6.onclick = () => {
 (Додатковачастина для завдання)
 */
 
-const rows = document.getElementById("rows");
-rows.style.marginLeft = "20px";
-const cols = document.getElementById("cols");
-cols.style.marginLeft = "20px";
-const content = document.getElementById("content");
-const button = document.getElementById("button");
+// const rows = document.getElementById("rows");
+// rows.style.marginLeft = "20px";
+// const cols = document.getElementById("cols");
+// cols.style.marginLeft = "20px";
+// const content = document.getElementById("content");
+// const button = document.getElementById("button");
 
-const table = document.getElementById("table");
+// const table = document.getElementById("table");
 
-button.onclick = () => {
-  const rowsValue = rows.value;
-  const colsValue = cols.value;
-  const contentValue = content.value;
+// button.onclick = () => {
+//   const rowsValue = rows.value;
+//   const colsValue = cols.value;
+//   const contentValue = content.value;
 
-  const table = document.createElement("table");
+//   const table = document.createElement("table");
 
-  for (let i = 0; i < rowsValue; i++) {
-    const tr = document.createElement("tr");
-    for (let j = 0; j < colsValue; j++) {
-      const td = document.createElement("td");
-      td.textContent = contentValue;
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
-  }
+//   for (let i = 0; i < rowsValue; i++) {
+//     const tr = document.createElement("tr");
+//     for (let j = 0; j < colsValue; j++) {
+//       const td = document.createElement("td");
+//       td.textContent = contentValue;
+//       tr.appendChild(td);
+//     }
+//     table.appendChild(tr);
+//   }
 
-  document.body.appendChild(table);
-};
+//   document.body.appendChild(table);
+// };
 
 /*
 створити сторінку з довільним блоком, в середині якого є значення "100грн"
@@ -251,37 +251,37 @@ button.onclick = () => {
  При перезавантаженні, яке відбулось раніше ніж минуло 10 секунд - нічого не відбувається
 */
 
-const div = document.getElementById("div");
-const price = document.getElementById("price");
-const interval = 10000;
+// const div = document.getElementById("div");
+// const price = document.getElementById("price");
+// const interval = 10000;
 
-const currentlocalData = JSON.parse(localStorage.getItem("amountData"));
-if (!currentlocalData) {
-  localStorage.setItem(
-    "amountData",
-    JSON.stringify({ amount: 100, lastVisit: Date.now() })
-  );
-  price.textContent = 100;
-} else {
-  if (currentlocalData.amount) {
-    price.textContent = currentlocalData.amount;
-  }
-}
+// const currentlocalData = JSON.parse(localStorage.getItem("amountData"));
+// if (!currentlocalData) {
+//   localStorage.setItem(
+//     "amountData",
+//     JSON.stringify({ amount: 100, lastVisit: Date.now() })
+//   );
+//   price.textContent = 100;
+// } else {
+//   if (currentlocalData.amount) {
+//     price.textContent = currentlocalData.amount;
+//   }
+// }
 
-window.onload = () => {
-  const data = JSON.parse(localStorage.getItem("amountData"));
+// window.onload = () => {
+//   const data = JSON.parse(localStorage.getItem("amountData"));
 
-  if (data.lastVisit) {
-    if (data.lastVisit < Date.now() - interval) {
-      price.textContent = data.amount + 10;
-      localStorage.setItem(
-        "amountData",
-        JSON.stringify({ amount: data.amount + 10, lastVisit: Date.now() })
-      );
-    } else {
-      console.log(
-        "You can't add 10, because you reloaded the page earlier than 10 seconds ago"
-      );
-    }
-  }
-};
+//   if (data.lastVisit) {
+//     if (data.lastVisit < Date.now() - interval) {
+//       price.textContent = data.amount + 10;
+//       localStorage.setItem(
+//         "amountData",
+//         JSON.stringify({ amount: data.amount + 10, lastVisit: Date.now() })
+//       );
+//     } else {
+//       console.log(
+//         "You can't add 10, because you reloaded the page earlier than 10 seconds ago"
+//       );
+//     }
+//   }
+// };
