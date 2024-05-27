@@ -102,12 +102,6 @@ window.onload = () => {
 При натисканні prev виводяться попередні 10 об'єктів
 */
 
-let count = 10;
-const step = 10;
-const users = Array(100)
-  .fill("")
-  .map((_, i) => ({ id: i + 1, name: `user ${i + 1}` }));
-
 const container = document.getElementById("container4");
 const buttonWrapper = document.getElementById("buttonWrapper");
 buttonWrapper.style.display = "flex";
@@ -121,17 +115,24 @@ prev.style.height = "50px";
 prev.style.marginRight = "10px";
 
 const next = document.getElementById("next");
-next.style.display = count === users.length ? "none" : "block ";
 next.style.width = "100px";
 next.style.height = "50px";
 
-function getNewUsers(count) {
-  return users.slice(0, count);
-}
+const users = Array(100)
+  .fill("")
+  .map((_, i) => ({ id: i + 1, name: `user ${i + 1}` }));
 
-const renderUsers = (newUsers = []) => {
+let currentPage = 1;
+const itemsPerPage = 10;
+
+function renderPage(page) {
   container.innerHTML = "";
-  newUsers.forEach((user) => {
+
+  const start = (page - 1) * itemsPerPage;
+  const end = page * itemsPerPage;
+  const currentUsers = users.slice(start, end);
+
+  currentUsers.forEach((user) => {
     const div = document.createElement("div");
     div.style.border = "1px solid black";
     div.style.width = "80vw";
@@ -149,31 +150,99 @@ const renderUsers = (newUsers = []) => {
     div.appendChild(strong);
     container.appendChild(div);
   });
-};
 
-renderUsers(getNewUsers(count));
+  prev.style.display = page === 1 ? "none" : "block";
+  next.style.display = page * itemsPerPage >= users.length ? "none" : "block";
+}
 
-prev.onclick = () => {
-  if (count === 10) {
-    alert("No more users");
-    prev.style.display = "none";
+prev.addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderPage(currentPage);
   }
-  if (count !== 5) {
-    count -= step;
-  }
-  renderUsers(getNewUsers(count));
-};
+});
 
-next.onclick = () => {
-  if (count === users.length) {
-    alert("No more users");
+next.addEventListener("click", () => {
+  if (currentPage * itemsPerPage < users.length) {
+    currentPage++;
+    renderPage(currentPage);
   }
-  if (count !== users.length) {
-    count += step;
-  }
-  renderUsers(getNewUsers(count));
-  prev.style.display = "block";
-};
+});
+
+renderPage(currentPage);
+
+// let count = 10;
+// const step = 10;
+// const users = Array(100)
+//   .fill("")
+//   .map((_, i) => ({ id: i + 1, name: `user ${i + 1}` }));
+
+// const container = document.getElementById("container4");
+// const buttonWrapper = document.getElementById("buttonWrapper");
+// buttonWrapper.style.display = "flex";
+// buttonWrapper.style.justifyContent = "center";
+// buttonWrapper.style.margin = "10px";
+
+// const prev = document.getElementById("prev");
+// prev.style.display = "none";
+// prev.style.width = "100px";
+// prev.style.height = "50px";
+// prev.style.marginRight = "10px";
+
+// const next = document.getElementById("next");
+// next.style.display = count === users.length ? "none" : "block ";
+// next.style.width = "100px";
+// next.style.height = "50px";
+
+// function getNewUsers(count) {
+//   return users.slice(0, count);
+// }
+
+// const renderUsers = (newUsers = []) => {
+//   container.innerHTML = "";
+//   newUsers.forEach((user) => {
+//     const div = document.createElement("div");
+//     div.style.border = "1px solid black";
+//     div.style.width = "80vw";
+//     div.style.height = "100px";
+//     div.style.margin = "5px";
+//     div.style.padding = "5px";
+//     div.style.boxShadow = "0 0 5px 0 black";
+//     const span = document.createElement("span");
+//     span.style.marginRight = "10px";
+//     span.textContent = user.id;
+//     div.appendChild(span);
+//     const strong = document.createElement("strong");
+//     strong.style.marginRight = "10px";
+//     strong.textContent = user.name;
+//     div.appendChild(strong);
+//     container.appendChild(div);
+//   });
+// };
+
+// renderUsers(getNewUsers(count));
+
+// prev.onclick = () => {
+//   if (count === 10) {
+//     alert("No more users");
+//     prev.style.display = "none";
+//   }
+//   if (count !== 5) {
+//     count -= step;
+//   }
+//   renderUsers(getNewUsers(count));
+// };
+
+// next.onclick = () => {
+//   if (count === users.length) {
+//     alert("No more users");
+//   }
+//   if (count !== users.length) {
+//     count += step;
+//   }
+//   renderUsers(getNewUsers(count));
+//   prev.style.display = "block";
+// };
 
 /*
 - Створити довільний елемент з id = text та створити кнопку.Використовуючи JavaScript, зробіть так, щоб при натисканні на кнопку зникав елемент з id="text".
