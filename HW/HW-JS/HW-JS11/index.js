@@ -31,19 +31,6 @@ const createElement = (typeElement, classLists, content) => {
   return element;
 };
 
-const findElement = (className, classLists, content) => {
-  let element = document.querySelector(className);
-  if (classLists && Array.isArray(classLists)) {
-    classLists.map((classList) => {
-      element.classList.add(classList);
-    });
-  }
-  if (content) {
-    element.textContent = content;
-  }
-  return element;
-};
-
 let currentPage = 1;
 const itemsPerPage = 5;
 const cartsWrapper = document.getElementById("carts");
@@ -108,17 +95,20 @@ function fetchCarts(page) {
         amountWrapper.appendChild(totalProducts);
         amountWrapper.appendChild(totalQuantity);
 
-        const orderButtonWrapper = document.createElement("div");
-        orderButtonWrapper.classList.add("orderButtonWrapper");
-        const orderButton = document.createElement("button");
-        orderButton.classList.add("orderButton");
-        orderButton.innerText = "Order";
+        const orderButtonWrapper = createElement(
+          "div",
+          ["orderButtonWrapper"],
+          ""
+        );
+        const orderButton = createElement("button", ["orderButton"], "Order");
         orderButton.addEventListener("click", () => {
           alert("Order is successful");
         });
-        const clearBasketButton = document.createElement("button");
-        clearBasketButton.classList.add("clearBasketButton");
-        clearBasketButton.innerText = "Clear";
+        const clearBasketButton = createElement(
+          "button",
+          ["clearBasketButton"],
+          "Clear"
+        );
         clearBasketButton.addEventListener("click", () => {
           alert("Basket is cleared");
         });
@@ -138,12 +128,10 @@ function fetchCarts(page) {
       const totalPages = Math.ceil(carts.length / itemsPerPage);
 
       for (let i = 1; i <= totalPages; i++) {
-        const button = document.createElement("button");
-        button.classList.add("paginationButton");
+        const button = createElement("button", ["paginationButton"], i);
         if (i === page) {
           button.classList.add("active");
         }
-        button.innerText = i;
         button.addEventListener("click", () => {
           currentPage = i;
           fetchCarts(i);
