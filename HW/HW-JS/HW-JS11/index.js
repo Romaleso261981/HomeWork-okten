@@ -89,80 +89,93 @@ fetch("https://dummyjson.com/carts")
 - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти. Інгредієнти повинні бути список під час відображення.
 */
 
-fetch("https://dummyjson.com/recipes")
-  .then((value) => value.json())
-  .then(({ recipes }) => {
-    for (const recipe of recipes) {
-      const usersWrapper = document.getElementById("recipes");
-      usersWrapper.classList.add("recipeWrapper");
+let limit = 3;
+const recipesWrapper = document.getElementById("recipes");
 
-      const div = document.createElement("div");
-      div.classList.add("recipeDiv");
+function fetchRecipes() {
+  fetch(`https://dummyjson.com/recipes?limit=${limit}`)
+    .then((value) => value.json())
+    .then(({ recipes }) => {
+      recipesWrapper.innerHTML = ""; // Очистка попереднього контенту
+      recipesWrapper.classList.add("recipeWrapper");
 
-      const imageWrapper = document.createElement("div");
-      imageWrapper.classList.add("imageWrapper");
-      const image = document.createElement("img");
-      image.src = recipe.image;
-      imageWrapper.appendChild(image);
+      for (const recipe of recipes) {
+        const div = document.createElement("div");
+        div.classList.add("recipeDiv");
 
-      const contentWrapper = document.createElement("div");
-      contentWrapper.classList.add("contentWrapper");
+        const imageWrapper = document.createElement("div");
+        imageWrapper.classList.add("imageWrapper");
+        const image = document.createElement("img");
+        image.src = recipe.image;
+        imageWrapper.appendChild(image);
 
-      const a = document.createElement("a");
-      a.href = `user-details.html?id=${recipe.id}`;
-      a.innerText = `${recipe.id} ${recipe.name}`;
+        const contentWrapper = document.createElement("div");
+        contentWrapper.classList.add("contentWrapper");
 
-      const rating = document.createElement("p");
-      rating.classList.add("rating");
-      rating.innerText = `rating: ${recipe.rating}`;
+        const tittle = document.createElement("h2");
+        tittle.classList.add("recipeTittle");
+        tittle.innerText = recipe.name;
 
-      const tittle = document.createElement("h2");
-      tittle.classList.add("recipeTittle");
-      tittle.innerText = recipe.name;
+        const rating = document.createElement("p");
+        rating.classList.add("rating");
+        rating.innerText = `Rating: ${recipe.rating}`;
 
-      const ingredientsWrapper = document.createElement("div");
-      ingredientsWrapper.classList.add("ingredientsWrapper");
-      const ingredientsTitle = document.createElement("h3");
-      ingredientsTitle.className = "title";
-      ingredientsTitle.innerText = "Ingredients";
+        const ingredientsWrapper = document.createElement("div");
+        ingredientsWrapper.classList.add("ingredientsWrapper");
+        const ingredientsTitle = document.createElement("h3");
+        ingredientsTitle.className = "title";
+        ingredientsTitle.innerText = "Ingredients";
 
-      const ingredients = document.createElement("div");
-      ingredients.classList.add("ingredientsList");
-      recipe.ingredients.map((ingredient) => {
-        const p = document.createElement("p");
-        p.innerText = ingredient;
-        ingredients.appendChild(p);
+        const ingredients = document.createElement("div");
+        ingredients.classList.add("ingredientsList");
+        recipe.ingredients.forEach((ingredient) => {
+          const p = document.createElement("p");
+          p.innerText = ingredient;
+          ingredients.appendChild(p);
+        });
+
+        ingredientsWrapper.appendChild(ingredientsTitle);
+        ingredientsWrapper.appendChild(ingredients);
+
+        const instructionsWrapper = document.createElement("div");
+        instructionsWrapper.classList.add("instructionsWrapper");
+        const instructionsTitle = document.createElement("h3");
+        instructionsTitle.className = "title";
+        instructionsTitle.innerText = "Instructions";
+        const instructions = document.createElement("div");
+        instructions.classList.add("instructionsList");
+        recipe.instructions.forEach((instruction) => {
+          const p = document.createElement("p");
+          p.innerText = instruction;
+          instructions.appendChild(p);
+        });
+
+        instructionsWrapper.appendChild(instructionsTitle);
+        instructionsWrapper.appendChild(instructions);
+
+        contentWrapper.appendChild(tittle);
+        contentWrapper.appendChild(rating);
+        contentWrapper.appendChild(instructionsWrapper);
+        contentWrapper.appendChild(ingredientsWrapper);
+
+        div.appendChild(imageWrapper);
+        div.appendChild(contentWrapper);
+        recipesWrapper.appendChild(div);
+      }
+
+      const button = document.createElement("button");
+      button.innerText = "Load more";
+      button.classList.add("loadMore");
+      button.addEventListener("click", () => {
+        limit += 3;
+        fetchRecipes(); // Виклик функції для оновлення списку
       });
 
-      ingredientsWrapper.appendChild(ingredientsTitle);
-      ingredientsWrapper.appendChild(ingredients);
+      recipesWrapper.appendChild(button);
+    });
+}
 
-      const instructionsWrapper = document.createElement("div");
-      instructionsWrapper.classList.add("instructionsWrapper");
-      const instructionsTitle = document.createElement("h3");
-      instructionsTitle.className = "title";
-      instructionsTitle.innerText = "Instructions";
-      const instructions = document.createElement("div");
-      instructions.classList.add("instructionsList");
-      recipe.instructions.map((instruction) => {
-        const p = document.createElement("p");
-        p.innerText = instruction;
-        instructions.appendChild(p);
-      });
-
-      instructionsWrapper.appendChild(instructionsTitle);
-      instructionsWrapper.appendChild(instructions);
-
-      contentWrapper.appendChild(tittle);
-      contentWrapper.appendChild(instructionsWrapper);
-      contentWrapper.appendChild(ingredientsWrapper);
-      contentWrapper.appendChild(a);
-
-      div.appendChild(imageWrapper);
-      div.appendChild(contentWrapper);
-      usersWrapper.appendChild(div);
-    }
-  });
+document.addEventListener("DOMContentLoaded", fetchRecipes);
 
 /*
 - зробити файл users.html
