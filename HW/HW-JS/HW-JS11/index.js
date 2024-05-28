@@ -16,6 +16,34 @@
 - взяти https://dummyjson.com/docs/carts та вивести інформацію про всі корзини. Відобразити всі поля кожної корзини.
 */
 
+/*
+Helpers function for rendering carts
+*/
+
+const createElement = (typeElement, classLists, content) => {
+  const element = document.createElement(typeElement);
+  if (classLists && Array.isArray(classLists)) {
+    classLists.forEach((classList) => {
+      element.classList.add(classList);
+    });
+  }
+  element.textContent = content;
+  return element;
+};
+
+const findElement = (className, classLists, content) => {
+  let element = document.querySelector(className);
+  if (classLists && Array.isArray(classLists)) {
+    classLists.map((classList) => {
+      element.classList.add(classList);
+    });
+  }
+  if (content) {
+    element.textContent = content;
+  }
+  return element;
+};
+
 let currentPage = 1;
 const itemsPerPage = 5;
 const cartsWrapper = document.getElementById("carts");
@@ -32,47 +60,41 @@ function fetchCarts(page) {
 
       cartsWrapper.innerHTML = "";
       paginatedCarts.forEach((cart) => {
-        const cartDiv = document.createElement("div");
-        cartDiv.classList.add("cartDiv");
-
-        const amountWrapper = document.createElement("div");
-        amountWrapper.classList.add("amountWrapper");
-
-        const id = document.createElement("span");
-        id.classList.add("cardId");
-        id.innerText = `id: ${cart.id}`;
-
-        const discountedTotal = document.createElement("p");
-        discountedTotal.classList.add("discountedTotal");
-        discountedTotal.innerText = `discountedTotal: ${cart.discountedTotal}`;
-
-        const total = document.createElement("p");
-        total.classList.add("total");
-        total.innerText = `total: ${cart.total}`;
-
-        const totalProducts = document.createElement("p");
-        totalProducts.classList.add("totalProducts");
-        totalProducts.innerText = `totalProducts: ${cart.totalProducts}`;
-
-        const totalQuantity = document.createElement("p");
-        totalQuantity.classList.add("totalQuantity");
-        totalQuantity.innerText = `totalQuantity: ${cart.totalQuantity}`;
-
-        const productsWrapper = document.createElement("div");
-        productsWrapper.classList.add("productsWrapper");
-        const productsTitle = document.createElement("h3");
-        productsTitle.className = "productsTitle";
-        productsTitle.innerText = "Products";
+        const cartDiv = createElement("div", ["cartDiv"], "");
+        const amountWrapper = createElement("div", ["amountWrapper"], "");
+        const id = createElement("span", ["cardId"], `id: ${cart.id}`);
+        const discountedTotal = createElement(
+          "p",
+          ["discountedTotal"],
+          `discountedTotal: ${cart.discountedTotal}`
+        );
+        const total = createElement("p", ["total"], `total: ${cart.total}`);
+        const totalProducts = createElement(
+          "p",
+          ["totalProducts"],
+          `totalProducts: ${cart.totalProducts}`
+        );
+        const totalQuantity = createElement(
+          "p",
+          ["totalQuantity"],
+          `totalQuantity: ${cart.totalQuantity}`
+        );
+        const productsWrapper = createElement("div", ["productsWrapper"], "");
+        const productsTitle = createElement(
+          "h3",
+          ["productsTitle"],
+          "Products"
+        );
 
         cart.products.forEach((product) => {
-          const productWrapper = document.createElement("div");
-          productWrapper.classList.add("productWrapper");
-          const productTitle = document.createElement("h4");
-          productTitle.className = "productTitle";
-          productTitle.innerText = product.title;
+          const productWrapper = createElement("div", ["productWrapper"], "");
+          const productTitle = createElement(
+            "h4",
+            ["productTitle"],
+            product.title
+          );
 
-          const productImage = document.createElement("img");
-          productImage.classList.add("productImage");
+          const productImage = createElement("img", ["productImage"], "");
           productImage.src = product.thumbnail;
 
           productWrapper.appendChild(productTitle);
