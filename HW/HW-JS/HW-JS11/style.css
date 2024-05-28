@@ -115,6 +115,8 @@ h2 {
   align-items: center;
   width: 32.33%;
   min-height: 450px;
+  border-radius: 10px;
+  overflow: hidden;
   box-shadow: #333 0 0 10px;
   padding: 2px;
 }
