@@ -16,74 +16,105 @@
 - взяти https://dummyjson.com/docs/carts та вивести інформацію про всі корзини. Відобразити всі поля кожної корзини.
 */
 
-fetch("https://dummyjson.com/carts")
-  .then((value) => value.json())
-  .then(({ carts }) => {
-    console.log(carts);
-    return carts.map((cart) => {
-      const cradsWrapper = document.getElementById("carts");
-      cradsWrapper.classList.add("cradsWrapper");
+let currentPage = 1;
+const itemsPerPage = 3; // Кількість елементів на сторінці
+const cartsWrapper = document.getElementById("carts");
+cartsWrapper.classList.add("cradsWrapper");
+const paginationWrapper = document.getElementById("pagination");
 
-      const div = document.createElement("div");
-      div.classList.add("cartDiv");
+function fetchCarts(page) {
+  fetch("https://dummyjson.com/carts")
+    .then((value) => value.json())
+    .then(({ carts }) => {
+      // Розрахунок необхідних індексів для пагінації
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = page * itemsPerPage;
+      const paginatedCarts = carts.slice(startIndex, endIndex);
 
-      const amountWrapper = document.createElement("div");
-      amountWrapper.classList.add("amountWrapper");
+      cartsWrapper.innerHTML = ""; // Очистка попереднього контенту
+      paginatedCarts.forEach((cart) => {
+        const div = document.createElement("div");
+        div.classList.add("cartDiv");
 
-      const id = document.createElement("span");
-      id.classList.add("cardId");
-      id.innerText = `id: ${cart.id}`;
+        const amountWrapper = document.createElement("div");
+        amountWrapper.classList.add("amountWrapper");
 
-      const discountedTotal = document.createElement("p");
-      discountedTotal.classList.add("discountedTotal");
-      discountedTotal.innerText = `discountedTotal: ${cart.discountedTotal}`;
+        const id = document.createElement("span");
+        id.classList.add("cardId");
+        id.innerText = `id: ${cart.id}`;
 
-      const total = document.createElement("p");
-      total.classList.add("total");
-      total.innerText = `total: ${cart.total}`;
+        const discountedTotal = document.createElement("p");
+        discountedTotal.classList.add("discountedTotal");
+        discountedTotal.innerText = `discountedTotal: ${cart.discountedTotal}`;
 
-      const totalProducts = document.createElement("p");
-      totalProducts.classList.add("totalProducts");
-      totalProducts.innerText = `totalProducts: ${cart.totalProducts}`;
+        const total = document.createElement("p");
+        total.classList.add("total");
+        total.innerText = `total: ${cart.total}`;
 
-      const totalQuantity = document.createElement("p");
-      totalQuantity.classList.add("totalQuantity");
-      totalQuantity.innerText = `totalQuantity: ${cart.totalQuantity}`;
+        const totalProducts = document.createElement("p");
+        totalProducts.classList.add("totalProducts");
+        totalProducts.innerText = `totalProducts: ${cart.totalProducts}`;
 
-      const productsWrapper = document.createElement("div");
-      productsWrapper.classList.add("productsWrapper");
-      const productsTitle = document.createElement("h3");
-      productsTitle.className = "productsTitle";
-      productsTitle.innerText = "Products";
+        const totalQuantity = document.createElement("p");
+        totalQuantity.classList.add("totalQuantity");
+        totalQuantity.innerText = `totalQuantity: ${cart.totalQuantity}`;
 
-      cart.products.map((product) => {
-        const productWrapper = document.createElement("div");
-        productWrapper.classList.add("productWrapper");
-        const productTitle = document.createElement("h4");
-        productTitle.className = "productTitle";
-        productTitle.innerText = product.title;
+        const productsWrapper = document.createElement("div");
+        productsWrapper.classList.add("productsWrapper");
+        const productsTitle = document.createElement("h3");
+        productsTitle.className = "productsTitle";
+        productsTitle.innerText = "Products";
 
-        const productImage = document.createElement("img");
-        productImage.classList.add("productImage");
-        productImage.src = product.thumbnail;
+        cart.products.forEach((product) => {
+          const productWrapper = document.createElement("div");
+          productWrapper.classList.add("productWrapper");
+          const productTitle = document.createElement("h4");
+          productTitle.className = "productTitle";
+          productTitle.innerText = product.title;
 
-        productWrapper.appendChild(productTitle);
-        productWrapper.appendChild(productImage);
+          const productImage = document.createElement("img");
+          productImage.classList.add("productImage");
+          productImage.src = product.thumbnail;
 
-        productsWrapper.appendChild(productWrapper);
+          productWrapper.appendChild(productTitle);
+          productWrapper.appendChild(productImage);
+
+          productsWrapper.appendChild(productWrapper);
+        });
+
+        amountWrapper.appendChild(discountedTotal);
+        amountWrapper.appendChild(total);
+        amountWrapper.appendChild(totalProducts);
+        amountWrapper.appendChild(totalQuantity);
+
+        div.appendChild(productsWrapper);
+        div.appendChild(amountWrapper);
+
+        cartsWrapper.appendChild(div);
       });
 
-      amountWrapper.appendChild(discountedTotal);
-      amountWrapper.appendChild(total);
-      amountWrapper.appendChild(totalProducts);
-      amountWrapper.appendChild(totalQuantity);
+      // Очищення попередніх кнопок пагінації
+      paginationWrapper.innerHTML = "";
+      paginationWrapper.classList.add("paginationWrapper");
+      const totalPages = Math.ceil(carts.length / itemsPerPage);
 
-      div.appendChild(productsWrapper);
-      div.appendChild(amountWrapper);
-
-      cradsWrapper.appendChild(div);
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement("button");
+        button.classList.add("paginationButton");
+        if (i === page) {
+          button.classList.add("active"); // Додати клас для активної кнопки
+        }
+        button.innerText = i;
+        button.addEventListener("click", () => {
+          currentPage = i;
+          fetchCarts(i);
+        });
+        paginationWrapper.appendChild(button);
+      }
     });
-  });
+}
+
+document.addEventListener("DOMContentLoaded", () => fetchCarts(currentPage));
 
 /*
 - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти. Інгредієнти повинні бути список під час відображення.
