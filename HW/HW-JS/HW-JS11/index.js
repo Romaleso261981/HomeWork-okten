@@ -40,7 +40,8 @@ const paginationWrapper = document.getElementById("pagination");
 function fetchCarts(page) {
   fetch("https://dummyjson.com/carts")
     .then((value) => value.json())
-    .then(({ carts }) => {
+    .then(({ total, carts, limit, skip }) => {
+      console.log(`total: ${total} limit: ${limit} skip: ${skip}`);
       const startIndex = (page - 1) * itemsPerPage;
       const endIndex = page * itemsPerPage;
       const paginatedCarts = carts.slice(startIndex, endIndex);

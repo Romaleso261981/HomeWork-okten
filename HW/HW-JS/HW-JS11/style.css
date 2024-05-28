@@ -293,3 +293,14 @@ h2 {
   border: 1px solid #ddd;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .recipeDiv {
+    width: 45%;
+  }
+}
+@media (max-width: 445px) {
+  .recipeDiv {
+    width: 100%;
+  }
+}
