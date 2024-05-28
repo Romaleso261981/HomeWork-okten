@@ -17,7 +17,7 @@
 */
 
 let currentPage = 1;
-const itemsPerPage = 3; // Кількість елементів на сторінці
+const itemsPerPage = 5;
 const cartsWrapper = document.getElementById("carts");
 cartsWrapper.classList.add("cradsWrapper");
 const paginationWrapper = document.getElementById("pagination");
@@ -26,12 +26,11 @@ function fetchCarts(page) {
   fetch("https://dummyjson.com/carts")
     .then((value) => value.json())
     .then(({ carts }) => {
-      // Розрахунок необхідних індексів для пагінації
       const startIndex = (page - 1) * itemsPerPage;
       const endIndex = page * itemsPerPage;
       const paginatedCarts = carts.slice(startIndex, endIndex);
 
-      cartsWrapper.innerHTML = ""; // Очистка попереднього контенту
+      cartsWrapper.innerHTML = "";
       paginatedCarts.forEach((cart) => {
         const div = document.createElement("div");
         div.classList.add("cartDiv");
@@ -93,7 +92,6 @@ function fetchCarts(page) {
         cartsWrapper.appendChild(div);
       });
 
-      // Очищення попередніх кнопок пагінації
       paginationWrapper.innerHTML = "";
       paginationWrapper.classList.add("paginationWrapper");
       const totalPages = Math.ceil(carts.length / itemsPerPage);
@@ -102,7 +100,7 @@ function fetchCarts(page) {
         const button = document.createElement("button");
         button.classList.add("paginationButton");
         if (i === page) {
-          button.classList.add("active"); // Додати клас для активної кнопки
+          button.classList.add("active");
         }
         button.innerText = i;
         button.addEventListener("click", () => {
