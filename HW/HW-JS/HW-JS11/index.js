@@ -32,8 +32,8 @@ function fetchCarts(page) {
 
       cartsWrapper.innerHTML = "";
       paginatedCarts.forEach((cart) => {
-        const div = document.createElement("div");
-        div.classList.add("cartDiv");
+        const cartDiv = document.createElement("div");
+        cartDiv.classList.add("cartDiv");
 
         const amountWrapper = document.createElement("div");
         amountWrapper.classList.add("amountWrapper");
@@ -86,10 +86,29 @@ function fetchCarts(page) {
         amountWrapper.appendChild(totalProducts);
         amountWrapper.appendChild(totalQuantity);
 
-        div.appendChild(productsWrapper);
-        div.appendChild(amountWrapper);
+        const orderButtonWrapper = document.createElement("div");
+        orderButtonWrapper.classList.add("orderButtonWrapper");
+        const orderButton = document.createElement("button");
+        orderButton.classList.add("orderButton");
+        orderButton.innerText = "Order";
+        orderButton.addEventListener("click", () => {
+          alert("Order is successful");
+        });
+        const clearBasketButton = document.createElement("button");
+        clearBasketButton.classList.add("clearBasketButton");
+        clearBasketButton.innerText = "Clear basket";
+        clearBasketButton.addEventListener("click", () => {
+          alert("Basket is cleared");
+        });
 
-        cartsWrapper.appendChild(div);
+        orderButtonWrapper.appendChild(orderButton);
+        orderButtonWrapper.appendChild(clearBasketButton);
+
+        cartDiv.appendChild(productsWrapper);
+        cartDiv.appendChild(amountWrapper);
+        cartDiv.appendChild(orderButtonWrapper);
+
+        cartsWrapper.appendChild(cartDiv);
       });
 
       paginationWrapper.innerHTML = "";
