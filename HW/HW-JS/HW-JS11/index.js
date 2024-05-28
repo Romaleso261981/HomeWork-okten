@@ -116,6 +116,10 @@ fetch("https://dummyjson.com/recipes")
       rating.classList.add("rating");
       rating.innerText = `rating: ${recipe.rating}`;
 
+      const tittle = document.createElement("h2");
+      tittle.classList.add("recipeTittle");
+      tittle.innerText = recipe.name;
+
       const ingredientsWrapper = document.createElement("div");
       ingredientsWrapper.classList.add("ingredientsWrapper");
       const ingredientsTitle = document.createElement("h3");
@@ -149,7 +153,7 @@ fetch("https://dummyjson.com/recipes")
       instructionsWrapper.appendChild(instructionsTitle);
       instructionsWrapper.appendChild(instructions);
 
-      contentWrapper.appendChild(rating);
+      contentWrapper.appendChild(tittle);
       contentWrapper.appendChild(instructionsWrapper);
       contentWrapper.appendChild(ingredientsWrapper);
       contentWrapper.appendChild(a);
