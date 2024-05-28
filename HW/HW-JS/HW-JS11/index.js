@@ -96,7 +96,7 @@ function fetchCarts(page) {
         });
         const clearBasketButton = document.createElement("button");
         clearBasketButton.classList.add("clearBasketButton");
-        clearBasketButton.innerText = "Clear basket";
+        clearBasketButton.innerText = "Clear";
         clearBasketButton.addEventListener("click", () => {
           alert("Basket is cleared");
         });

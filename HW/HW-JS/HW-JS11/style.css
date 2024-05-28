@@ -184,8 +184,9 @@ h2 {
   align-items: flex-start;
 }
 .orderButtonWrapper {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 10px;
 }
@@ -195,8 +196,8 @@ h2 {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
   background-color: transparent;
   color: #000;
   font-size: 20px;
@@ -209,8 +210,8 @@ h2 {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
   background-color: transparent;
   color: #000;
   font-size: 20px;
