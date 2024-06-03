@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>owu.com.ua - OKTEN SCHOOL</title>
+  </head>
+  <body>
+    <script>
+      //    fetch('https://jsonplaceholder.typicode.com/users')
+      //        .then(value => value.json())
+      //        .then(users => {
+      //            for (const user of users) {
+      //                fetch('https://jsonplaceholder.typicode.com/posts?userId=' + user.id)
+      //                    .then(value => value.json())
+      //                    .then(postsOfIteratedUser => {
+      //                        user.posts = postsOfIteratedUser;
+      //
+      //                    });
+      //                console.log(user);
+      //
+      //            }
+      //        });
+
+      let users = fetch("https://jsonplaceholder.typicode.com/users").then(
+        (value) => value.json()
+      );
+
+      let posts = fetch("https://jsonplaceholder.typicode.com/posts").then(
+        (value) => value.json()
+      );
+
+      Promise.all([users, posts]).then(([users, posts]) => {
+        // let [users, posts] = result;
+        for (const user of users) {
+          user.posts = [];
+          for (const post of posts) {
+            if (user.id === post.userId) {
+              user.posts.push(post);
+            }
+          }
+        }
+        const usersWrapper = document.createElement("div");
+        usersWrapper.style.display = "flex";
+        usersWrapper.style.flexWrap = "wrap";
+        usersWrapper.style.justifyContent = "space-around";
+        usersWrapper.style.alignItems = "center";
+        usersWrapper.style.width = "100%";
+        usersWrapper.style.padding = "20px";
+        usersWrapper.style.boxSizing = "border-box";
+        document.body.appendChild(usersWrapper);
+
+        for (const user of users) {
+          const userDiv = document.createElement("div");
+          userDiv.style.width = "30%";
+          userDiv.style.border = "1px solid black";
+          userDiv.style.padding = "10px";
+          userDiv.style.boxSizing = "border-box";
+          userDiv.style.display = "flex";
+          userDiv.style.flexDirection = "column";
+          userDiv.style.alignItems = "center";
+          userDiv.style.justifyContent = "center";
+          usersWrapper.appendChild(userDiv);
+
+          const userName = document.createElement("h2");
+          userName.innerText = user.name;
+          userDiv.appendChild(userName);
+
+          const userPosts = document.createElement("div");
+          userPosts.style.width = "100%";
+          userPosts.style.display = "flex";
+          userPosts.style.flexWrap = "wrap";
+          userPosts.style.justifyContent = "space-around";
+          userPosts.style.alignItems = "center";
+          userDiv.appendChild(userPosts);
+
+          for (const post of user.posts) {
+            const postDiv = document.createElement("div");
+            postDiv.style.width = "30%";
+            postDiv.style.border = "1px solid black";
+            postDiv.style.padding = "10px";
+            postDiv.style.boxSizing = "border-box";
+            postDiv.style.borderRadius = "10px";
+            postDiv.style.display = "flex";
+            postDiv.style.flexDirection = "column";
+            postDiv.style.alignItems = "center";
+            postDiv.style.justifyContent = "center";
+            userPosts.appendChild(postDiv);
+
+            const postTitle = document.createElement("h3");
+            postTitle.innerText = post.title;
+            postDiv.appendChild(postTitle);
+
+            const postBody = document.createElement("p");
+            postBody.innerText = post.body;
+            postDiv.appendChild(postBody);
+          }
+        }
+
+        console.log(users);
+      });
+
+      // Promise.race([users, posts]).then((value) => console.log(value));
+      // Promise.any([users, posts]).then((value) => console.log(value));
+    </script>
+  </body>
+</html>

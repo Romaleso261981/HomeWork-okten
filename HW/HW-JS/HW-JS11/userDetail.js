@@ -72,9 +72,8 @@ const openPosts = (commentsButton) => {
   }
 };
 
-const userId = localStorage.getItem("userId");
-
-console.log("userId:", userId);
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get("id");
 
 fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
   .then((value) => value.json())
@@ -131,7 +130,6 @@ fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
           );
         }
       }
-
       const buttonWrapper = createElement("div", ["button-wrapper"], "");
 
       const commentsButton = createElement(

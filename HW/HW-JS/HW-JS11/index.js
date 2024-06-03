@@ -246,7 +246,6 @@ document.addEventListener("DOMContentLoaded", fetchRecipes);
 
 function handleUserDetail(id) {
   window.location.href = `userDetail.html?id=${id}`;
-  localStorage.setItem("userId", id);
 }
 
 function userRender(user) {
