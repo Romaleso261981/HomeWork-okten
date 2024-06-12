@@ -72,8 +72,7 @@ const openPosts = (commentsButton) => {
   }
 };
 
-const urlParams = new URLSearchParams(window.location.search);
-const userId = urlParams.get("id");
+const userId = new URLSearchParams(window.location.search).get("id");
 
 fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
   .then((value) => value.json())
